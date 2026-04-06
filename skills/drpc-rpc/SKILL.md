@@ -33,6 +33,8 @@ Once you have the key:
 | Tool parameters, return formats | [tools-reference.md](tools-reference.md) |
 | Single-network query (balance, tx, block, gas, contract) | [recipes-simple.md](recipes-simple.md) |
 | Multi-network comparison, cross-chain tracking | [recipes-crosschain.md](recipes-crosschain.md) |
+| DeFi: portfolio, approvals, LP tokens, staking | [recipes-defi-basics.md](recipes-defi-basics.md) |
+| DeFi: Aave, Uniswap, Lido, Morpho, Curve | [recipes-defi-protocols.md](recipes-defi-protocols.md) |
 | Error handling, billing issue | [errors.md](errors.md) |
 | Setup or reconfigure MCP | [setup.md](setup.md) |
 

@@ -4,4 +4,6 @@
 @./skills/drpc-rpc/tools-reference.md
 @./skills/drpc-rpc/recipes-simple.md
 @./skills/drpc-rpc/recipes-crosschain.md
+@./skills/drpc-rpc/recipes-defi-basics.md
+@./skills/drpc-rpc/recipes-defi-protocols.md
 @./skills/drpc-rpc/errors.md
