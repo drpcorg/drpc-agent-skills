@@ -1,10 +1,32 @@
 # DRPC Agent Skills
 
+[![GitHub stars](https://img.shields.io/github/stars/drpcorg/drpc-agent-skills?style=social)](https://github.com/drpcorg/drpc-agent-skills)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Blockchains](https://img.shields.io/badge/blockchains-100%2B-blue)](https://drpc.org/chainlist)
+[![Networks](https://img.shields.io/badge/networks-200%2B-purple)](https://drpc.org/chainlist)
+[![Platforms](https://img.shields.io/badge/platforms-7-green)](#install)
+[![MCP Tools](https://img.shields.io/badge/MCP_tools-16-orange)](#mcp-tools)
+
 Blockchain RPC skills for AI coding agents. 100+ blockchains, 200+ networks, guided recipes, error handling, zero-restart first session.
 
 **Why DRPC?** Decentralized multi-provider gateway with automatic failover and consensus validation. No single point of failure.
 
+## What Can You Do?
+
+Just ask your AI agent in natural language:
+
+| Use Case | Example Prompt |
+|----------|---------------|
+| **DeFi Portfolio** | "Get my wallet balance across Ethereum, Arbitrum, and Base" |
+| **Gas Optimization** | "Compare gas prices across all L2 networks right now" |
+| **Transaction Tracking** | "Check if transaction 0xabc... is confirmed on Optimism" |
+| **Smart Contract Reading** | "Read the totalSupply of USDC contract on Base" |
+| **Whale Watching** | "Get the last 10 transactions for this address on Ethereum" |
+| **Cross-Chain Analysis** | "Compare TVL-related contract data across Arbitrum, Base and Optimism" |
+
 ## Install
+
+**Works with:** Claude Code · Gemini CLI · Cursor · Codex · Windsurf · Cline · OpenClaw
 
 Get your free API key at [drpc.org](https://drpc.org), then install the skill for your platform:
 
@@ -61,6 +83,11 @@ Once installed, just ask your AI agent:
 
 > "Read the totalSupply of USDC contract on Base"
 
+```text
+You ask → Agent reads skill → Calls DRPC API → Returns blockchain data
+         (natural language)    (auto-configured)   (100+ chains)
+```
+
 The skill guides the agent through:
 1. **First session:** asks for API key, executes request via direct HTTP (no restart needed), configures MCP for future sessions
 2. **Subsequent sessions:** uses native MCP tools (faster, integrated)
@@ -102,6 +129,12 @@ The skill guides the agent through:
 ## Supported Networks
 
 Ethereum, Arbitrum, Optimism, Base, Polygon, BNB Chain, Avalanche, zkSync, Linea, Scroll, Mantle, Fantom, Gnosis, Celo, Moonbeam, Harmony, Aurora, Metis, Boba, Cronos, Klaytn, Solana, Bitcoin, NEAR, Cosmos, Starknet, and [many more](https://drpc.org/chainlist).
+
+## Contributing
+
+Contributions welcome! Please open an issue or submit a PR.
+
+If you find this useful, please star the repo -- it helps others discover it.
 
 ## License
 
