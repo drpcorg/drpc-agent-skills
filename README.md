@@ -1,49 +1,75 @@
 # DRPC Agent Skills
 
-Blockchain RPC access for AI coding agents. Connect to 100+ blockchains and 200+ networks from any AI agent in 30 seconds.
+Blockchain RPC skills for AI coding agents. 100+ blockchains, 200+ networks, guided recipes, cross-chain workflows.
 
 **Why DRPC?** Decentralized multi-provider gateway with automatic failover and consensus validation. No single point of failure.
 
-## Quick Start
+## Install
 
-Get your free API key at [drpc.org](https://drpc.org), then run the setup command for your platform:
+Get your free API key at [drpc.org](https://drpc.org), then install skills for your platform:
 
 ### Claude Code
 ```bash
-claude mcp add drpc https://lb.drpc.org/mcp/YOUR_KEY
-```
-
-### Codex
-```bash
-codex mcp add drpc --url https://lb.drpc.org/mcp/YOUR_KEY
+claude plugins marketplace add drpcorg/drpc-agent-skills
+claude plugins install drpc-agent-skills
 ```
 
 ### Gemini CLI
 ```bash
-gemini mcp add drpc https://lb.drpc.org/mcp/YOUR_KEY -t http
+gemini extensions install https://github.com/drpcorg/drpc-agent-skills
+```
+
+### Codex
+```bash
+git clone https://github.com/drpcorg/drpc-agent-skills.git
+ln -s $(pwd)/drpc-agent-skills/skills/drpc-rpc ~/.agents/skills/drpc-rpc
+ln -s $(pwd)/drpc-agent-skills/skills/drpc-crosschain ~/.agents/skills/drpc-crosschain
 ```
 
 ### Cursor
-Add to `.cursor/mcp.json`:
-```json
-{ "mcpServers": { "drpc": { "url": "https://lb.drpc.org/mcp/YOUR_KEY" } } }
+```bash
+git clone https://github.com/drpcorg/drpc-agent-skills.git
+ln -s $(pwd)/drpc-agent-skills/skills/drpc-rpc .cursor/skills/drpc-rpc
+ln -s $(pwd)/drpc-agent-skills/skills/drpc-crosschain .cursor/skills/drpc-crosschain
 ```
 
 ### Windsurf
-Add to `~/.codeium/windsurf/mcp_config.json`:
-```json
-{ "mcpServers": { "drpc": { "serverUrl": "https://lb.drpc.org/mcp/YOUR_KEY" } } }
+```bash
+git clone https://github.com/drpcorg/drpc-agent-skills.git
+ln -s $(pwd)/drpc-agent-skills/skills/drpc-rpc .windsurf/skills/drpc-rpc
+ln -s $(pwd)/drpc-agent-skills/skills/drpc-crosschain .windsurf/skills/drpc-crosschain
 ```
 
 ### Cline
-Add to MCP settings:
+```bash
+git clone https://github.com/drpcorg/drpc-agent-skills.git
+ln -s $(pwd)/drpc-agent-skills/skills/drpc-rpc .cline/skills/drpc-rpc
+ln -s $(pwd)/drpc-agent-skills/skills/drpc-crosschain .cline/skills/drpc-crosschain
+```
+
+## MCP Server (Optional)
+
+Skills include setup recipes that guide the agent through MCP configuration. To add the MCP server directly:
+
+```bash
+# Claude Code
+claude mcp add drpc https://lb.drpc.org/mcp/YOUR_KEY
+
+# Codex
+codex mcp add drpc --url https://lb.drpc.org/mcp/YOUR_KEY
+
+# Gemini CLI
+gemini mcp add drpc https://lb.drpc.org/mcp/YOUR_KEY -t http
+```
+
+For Cursor, Windsurf, and Cline — add to your MCP config file:
 ```json
 { "mcpServers": { "drpc": { "url": "https://lb.drpc.org/mcp/YOUR_KEY" } } }
 ```
 
 ## What Can You Do?
 
-Once connected, just ask your AI agent:
+Once installed, just ask your AI agent:
 
 > "Get the ETH balance of vitalik.eth on Ethereum"
 
@@ -55,7 +81,14 @@ Once connected, just ask your AI agent:
 
 > "Read the totalSupply of USDC contract on Base"
 
-## Available Tools
+## Skills Included
+
+| Skill | Description |
+|-------|-------------|
+| `drpc-rpc` | Core blockchain RPC access — setup, 16 tools, recipes for balances, transactions, contracts, gas |
+| `drpc-crosschain` | Multi-network recipes — cross-chain balances, L2 gas comparison, bridge tracking |
+
+## Available MCP Tools
 
 | Tool | Description |
 |------|-------------|
@@ -79,22 +112,6 @@ Once connected, just ask your AI agent:
 ## Supported Networks
 
 Ethereum, Arbitrum, Optimism, Base, Polygon, BNB Chain, Avalanche, zkSync, Linea, Scroll, Mantle, Fantom, Gnosis, Celo, Moonbeam, Harmony, Aurora, Metis, Boba, Cronos, Klaytn, Solana, Bitcoin, NEAR, Cosmos, Starknet, and [many more](https://drpc.org/chainlist).
-
-## Installing Skills (Optional)
-
-The MCP connection above gives you all the tools. For guided recipes and cross-chain workflows, install the skills:
-
-**Claude Code:**
-```bash
-claude plugins marketplace add drpcorg/drpc-agent-skills
-claude plugins install drpc-agent-skills
-```
-
-**Codex:**
-```bash
-git clone https://github.com/drpcorg/drpc-agent-skills.git
-ln -s $(pwd)/drpc-agent-skills/skills ~/.agents/skills/drpc-agent-skills
-```
 
 ## License
 
