@@ -10,24 +10,21 @@ Get your free API key at [drpc.org](https://drpc.org), then run the setup comman
 
 ### Claude Code
 ```bash
-claude mcp add --transport sse drpc https://lb.drpc.org/mcp/YOUR_KEY
+claude mcp add drpc https://lb.drpc.org/mcp/YOUR_KEY
 ```
 
 ### Codex
-Add to `~/.codex/config.toml`:
-```toml
-[mcp_servers.drpc]
-url = "https://lb.drpc.org/mcp/YOUR_KEY"
+```bash
+codex mcp add drpc --url https://lb.drpc.org/mcp/YOUR_KEY
+```
+
+### Gemini CLI
+```bash
+gemini mcp add drpc https://lb.drpc.org/mcp/YOUR_KEY -t http
 ```
 
 ### Cursor
 Add to `.cursor/mcp.json`:
-```json
-{ "mcpServers": { "drpc": { "url": "https://lb.drpc.org/mcp/YOUR_KEY" } } }
-```
-
-### Gemini CLI
-Add to `~/.gemini/settings.json`:
 ```json
 { "mcpServers": { "drpc": { "url": "https://lb.drpc.org/mcp/YOUR_KEY" } } }
 ```
@@ -42,11 +39,6 @@ Add to `~/.codeium/windsurf/mcp_config.json`:
 Add to MCP settings:
 ```json
 { "mcpServers": { "drpc": { "url": "https://lb.drpc.org/mcp/YOUR_KEY" } } }
-```
-
-### OpenClaw
-```bash
-openclaw mcp set drpc '{"url":"https://lb.drpc.org/mcp/YOUR_KEY"}'
 ```
 
 ## What Can You Do?
@@ -94,8 +86,8 @@ The MCP connection above gives you all the tools. For guided recipes and cross-c
 
 **Claude Code:**
 ```bash
-git clone https://github.com/drpcorg/drpc-agent-skills.git
-claude plugins install ./drpc-agent-skills
+claude plugins marketplace add drpcorg/drpc-agent-skills
+claude plugins install drpc-agent-skills
 ```
 
 **Codex:**

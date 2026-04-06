@@ -11,10 +11,3 @@ Add a DRPC MCP server to your `opencode.json`:
   }
 }
 ```
-
-For skills (guided recipes), clone the repo and symlink:
-
-```bash
-git clone https://github.com/drpcorg/drpc-agent-skills.git
-ln -s $(pwd)/drpc-agent-skills/skills ~/.opencode/skills/drpc-agent-skills
-```

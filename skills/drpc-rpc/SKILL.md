@@ -17,20 +17,17 @@ Once you have the key, configure MCP for the current platform:
 
 **Claude Code:**
 ```bash
-claude mcp add --transport sse drpc https://lb.drpc.org/mcp/API_KEY
+claude mcp add drpc https://lb.drpc.org/mcp/API_KEY
 ```
 
 **Codex:**
-Add to `~/.codex/config.toml`:
-```toml
-[mcp_servers.drpc]
-url = "https://lb.drpc.org/mcp/API_KEY"
+```bash
+codex mcp add drpc --url https://lb.drpc.org/mcp/API_KEY
 ```
 
 **Gemini CLI:**
-Add to `~/.gemini/settings.json` under `mcpServers`:
-```json
-"drpc": { "url": "https://lb.drpc.org/mcp/API_KEY" }
+```bash
+gemini mcp add drpc https://lb.drpc.org/mcp/API_KEY -t http
 ```
 
 **Cursor:**
@@ -49,11 +46,6 @@ Add to `~/.codeium/windsurf/mcp_config.json`:
 Add to MCP settings:
 ```json
 { "mcpServers": { "drpc": { "url": "https://lb.drpc.org/mcp/API_KEY" } } }
-```
-
-**OpenClaw:**
-```bash
-openclaw mcp set drpc '{"url":"https://lb.drpc.org/mcp/API_KEY"}'
 ```
 
 After setup, restart the session for MCP tools to become available.
