@@ -1,7 +1,7 @@
 {
   "name": "drpc-agent-skills",
   "displayName": "DRPC Agent Skills",
-  "description": "Blockchain RPC access for AI agents — 50+ networks via DRPC MCP gateway",
+  "description": "Blockchain RPC access for AI agents — 200+ networks via DRPC MCP gateway",
   "version": "0.1.0",
   "author": {
     "name": "DRPC",

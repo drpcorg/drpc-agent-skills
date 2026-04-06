@@ -1,6 +1,6 @@
 # DRPC Agent Skills
 
-Blockchain RPC access for AI coding agents. Connect to 50+ networks from any AI agent in 30 seconds.
+Blockchain RPC access for AI coding agents. Connect to 100+ blockchains and 200+ networks from any AI agent in 30 seconds.
 
 **Why DRPC?** Decentralized multi-provider gateway with automatic failover and consensus validation. No single point of failure.
 
@@ -67,7 +67,7 @@ Once connected, just ask your AI agent:
 
 | Tool | Description |
 |------|-------------|
-| `list_networks` | All 50+ supported networks |
+| `list_networks` | All 200+ supported networks |
 | `list_methods` | RPC methods available for a network |
 | `get_network_info` | Network details (chain ID, currency, explorers) |
 | `eth_getBalance` | Native token balance |

@@ -5,7 +5,7 @@ description: Use when the user needs blockchain data (balances, transactions, bl
 
 # DRPC RPC — Blockchain Access for AI Agents
 
-Connect to 50+ blockchain networks through DRPC's decentralized RPC gateway via MCP.
+Connect to 100+ blockchains and 200+ networks through DRPC's decentralized RPC gateway via MCP.
 
 ## Setup
 
@@ -64,7 +64,7 @@ Once MCP is connected, these tools are available:
 
 | Tool | What it does |
 |------|-------------|
-| `list_networks` | List all 50+ supported blockchain networks |
+| `list_networks` | List all 200+ supported blockchain networks |
 | `list_methods` | List RPC methods available for a network |
 | `get_network_info` | Detailed info about a network (chain ID, currency, explorers) |
 | `eth_getBalance` | Get native token balance of an address |
