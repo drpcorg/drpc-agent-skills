@@ -47,6 +47,13 @@ ln -s $(pwd)/drpc-agent-skills/skills/drpc-rpc .cline/skills/drpc-rpc
 ln -s $(pwd)/drpc-agent-skills/skills/drpc-crosschain .cline/skills/drpc-crosschain
 ```
 
+### OpenClaw
+```bash
+git clone https://github.com/drpcorg/drpc-agent-skills.git
+ln -s $(pwd)/drpc-agent-skills/skills/drpc-rpc ~/.openclaw/skills/drpc-rpc
+ln -s $(pwd)/drpc-agent-skills/skills/drpc-crosschain ~/.openclaw/skills/drpc-crosschain
+```
+
 ## MCP Server (Optional)
 
 Skills include setup recipes that guide the agent through MCP configuration. To add the MCP server directly:
@@ -60,6 +67,9 @@ codex mcp add drpc --url https://lb.drpc.org/mcp/YOUR_KEY
 
 # Gemini CLI
 gemini mcp add drpc https://lb.drpc.org/mcp/YOUR_KEY -t http
+
+# OpenClaw
+openclaw mcp set drpc '{"url":"https://lb.drpc.org/mcp/YOUR_KEY"}'
 ```
 
 For Cursor, Windsurf, and Cline — add to your MCP config file:
