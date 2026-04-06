@@ -1,0 +1,105 @@
+---
+name: drpc-rpc
+description: Use when the user needs blockchain data (balances, transactions, blocks, gas prices, contract reads), wants to set up blockchain RPC access, or mentions DRPC, Web3, or Ethereum RPC. Also triggers on specific method names like eth_getBalance, eth_call, eth_getLogs.
+---
+
+# DRPC RPC — Blockchain Access for AI Agents
+
+Connect to 50+ blockchain networks through DRPC's decentralized RPC gateway via MCP.
+
+## Setup
+
+Check if DRPC MCP tools are already available (look for tools named `list_networks`, `eth_get_balance`, `rpc_call`). If yes, skip setup entirely.
+
+If not configured, ask the user for their DRPC API key. If they don't have one, direct them to https://drpc.org to sign up (free tier available).
+
+Once you have the key, configure MCP for the current platform:
+
+**Claude Code:**
+```bash
+claude mcp add --transport sse drpc https://lb.drpc.org/mcp/API_KEY
+```
+
+**Codex:**
+Add to `~/.codex/config.toml`:
+```toml
+[mcp_servers.drpc]
+url = "https://lb.drpc.org/mcp/API_KEY"
+```
+
+**Gemini CLI:**
+Add to `~/.gemini/settings.json` under `mcpServers`:
+```json
+"drpc": { "url": "https://lb.drpc.org/mcp/API_KEY" }
+```
+
+**Cursor:**
+Add to `.cursor/mcp.json`:
+```json
+{ "mcpServers": { "drpc": { "url": "https://lb.drpc.org/mcp/API_KEY" } } }
+```
+
+**Windsurf:**
+Add to `~/.codeium/windsurf/mcp_config.json`:
+```json
+{ "mcpServers": { "drpc": { "serverUrl": "https://lb.drpc.org/mcp/API_KEY" } } }
+```
+
+**Cline:**
+Add to MCP settings:
+```json
+{ "mcpServers": { "drpc": { "url": "https://lb.drpc.org/mcp/API_KEY" } } }
+```
+
+**OpenClaw:**
+```bash
+openclaw mcp set drpc '{"url":"https://lb.drpc.org/mcp/API_KEY"}'
+```
+
+After setup, restart the session for MCP tools to become available.
+
+## Available Tools
+
+Once MCP is connected, these tools are available:
+
+| Tool | What it does |
+|------|-------------|
+| `list_networks` | List all 50+ supported blockchain networks |
+| `list_methods` | List RPC methods available for a network |
+| `get_network_info` | Detailed info about a network (chain ID, currency, explorers) |
+| `eth_get_balance` | Get native token balance of an address |
+| `eth_get_block` | Get block by number or hash |
+| `eth_get_transaction` | Get transaction details by hash |
+| `eth_get_receipt` | Get transaction receipt (status, gas, logs) |
+| `eth_get_logs` | Query event logs with filters |
+| `eth_call` | Read-only smart contract call |
+| `eth_gas_price` | Current gas price for a network |
+| `rpc_call` | Any JSON-RPC method on any network (generic fallback) |
+| `rpc_batch` | Multiple RPC calls in a single request |
+
+## Recipes
+
+### Get wallet balance
+Call `eth_get_balance` with the address and network. The result is in wei (hex). Convert: divide by 10^18 for ETH/MATIC, 10^8 for BTC.
+
+### Check transaction status
+Call `eth_get_receipt` with the tx hash. Check the `status` field: `"0x1"` = success, `"0x0"` = reverted.
+
+### Read a smart contract
+Call `eth_call` with the contract address (`to`), ABI-encoded function call (`data`), and network. Common selectors:
+- `0x70a08231` + padded address = `balanceOf(address)` (ERC-20)
+- `0x95d89b41` = `symbol()` (ERC-20)
+- `0x313ce567` = `decimals()` (ERC-20)
+
+### Compare gas prices
+Call `eth_gas_price` on multiple L2 networks (base, arbitrum, optimism, polygon) and compare. Results are in wei (hex).
+
+### Discover networks
+Call `list_networks` with no arguments to see all available networks with chain IDs and native currencies.
+
+## Tips
+- Always use `list_networks` first if you're unsure which networks are available
+- Use `rpc_batch` to combine multiple independent queries into one request
+- For event logs, keep block ranges narrow (max 1000 blocks) to avoid timeouts
+- Block tags: `"latest"`, `"earliest"`, `"pending"`, `"safe"`, `"finalized"` or hex block number
+- All addresses must be 0x-prefixed, 42-character hex strings
