@@ -68,13 +68,19 @@ Once connected, just ask your AI agent:
 | Tool | Description |
 |------|-------------|
 | `list_networks` | All 50+ supported networks |
-| `eth_get_balance` | Native token balance |
-| `eth_get_block` | Block data by number/hash |
-| `eth_get_transaction` | Transaction details |
-| `eth_get_receipt` | Receipt with status and logs |
-| `eth_get_logs` | Event log queries |
+| `list_methods` | RPC methods available for a network |
+| `get_network_info` | Network details (chain ID, currency, explorers) |
+| `eth_getBalance` | Native token balance |
+| `eth_getBlockByNumber` | Block data by number or tag |
+| `eth_getBlockByHash` | Block data by hash |
+| `eth_getTransactionByHash` | Transaction details |
+| `eth_getTransactionReceipt` | Receipt with status and logs |
+| `eth_getLogs` | Event log queries |
 | `eth_call` | Read smart contracts |
-| `eth_gas_price` | Current gas price |
+| `eth_gasPrice` | Current gas price |
+| `eth_estimateGas` | Estimate gas for a transaction |
+| `eth_getCode` | Contract bytecode at address |
+| `eth_getTransactionCount` | Nonce for an address |
 | `rpc_call` | Any JSON-RPC method |
 | `rpc_batch` | Batch multiple calls |
 
@@ -88,12 +94,14 @@ The MCP connection above gives you all the tools. For guided recipes and cross-c
 
 **Claude Code:**
 ```bash
-claude plugin add github:drpcorg/drpc-agent-skills
+git clone https://github.com/drpcorg/drpc-agent-skills.git
+claude plugins install ./drpc-agent-skills
 ```
 
 **Codex:**
 ```bash
-ln -s /path/to/drpc-agent-skills/skills ~/.agents/skills/drpc-agent-skills
+git clone https://github.com/drpcorg/drpc-agent-skills.git
+ln -s $(pwd)/drpc-agent-skills/skills ~/.agents/skills/drpc-agent-skills
 ```
 
 ## License

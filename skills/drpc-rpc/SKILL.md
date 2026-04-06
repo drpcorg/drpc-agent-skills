@@ -9,7 +9,7 @@ Connect to 50+ blockchain networks through DRPC's decentralized RPC gateway via 
 
 ## Setup
 
-Check if DRPC MCP tools are already available (look for tools named `list_networks`, `eth_get_balance`, `rpc_call`). If yes, skip setup entirely.
+Check if DRPC MCP tools are already available (look for tools named `list_networks`, `eth_getBalance`, `rpc_call`). If yes, skip setup entirely.
 
 If not configured, ask the user for their DRPC API key. If they don't have one, direct them to https://drpc.org to sign up (free tier available).
 
@@ -67,23 +67,27 @@ Once MCP is connected, these tools are available:
 | `list_networks` | List all 50+ supported blockchain networks |
 | `list_methods` | List RPC methods available for a network |
 | `get_network_info` | Detailed info about a network (chain ID, currency, explorers) |
-| `eth_get_balance` | Get native token balance of an address |
-| `eth_get_block` | Get block by number or hash |
-| `eth_get_transaction` | Get transaction details by hash |
-| `eth_get_receipt` | Get transaction receipt (status, gas, logs) |
-| `eth_get_logs` | Query event logs with filters |
+| `eth_getBalance` | Get native token balance of an address |
+| `eth_getBlockByNumber` | Get block by number or tag (latest, earliest, etc.) |
+| `eth_getBlockByHash` | Get block by hash |
+| `eth_getTransactionByHash` | Get transaction details by hash |
+| `eth_getTransactionReceipt` | Get transaction receipt (status, gas, logs) |
+| `eth_getLogs` | Query event logs with filters |
 | `eth_call` | Read-only smart contract call |
-| `eth_gas_price` | Current gas price for a network |
+| `eth_gasPrice` | Current gas price for a network |
+| `eth_estimateGas` | Estimate gas for a transaction |
+| `eth_getCode` | Get contract bytecode at an address |
+| `eth_getTransactionCount` | Get nonce (transaction count) for an address |
 | `rpc_call` | Any JSON-RPC method on any network (generic fallback) |
 | `rpc_batch` | Multiple RPC calls in a single request |
 
 ## Recipes
 
 ### Get wallet balance
-Call `eth_get_balance` with the address and network. The result is in wei (hex). Convert: divide by 10^18 for ETH/MATIC, 10^8 for BTC.
+Call `eth_getBalance` with the address and network. The result is in wei (hex). Convert: divide by 10^18 for ETH/MATIC, 10^8 for BTC.
 
 ### Check transaction status
-Call `eth_get_receipt` with the tx hash. Check the `status` field: `"0x1"` = success, `"0x0"` = reverted.
+Call `eth_getTransactionReceipt` with the tx hash. Check the `status` field: `"0x1"` = success, `"0x0"` = reverted.
 
 ### Read a smart contract
 Call `eth_call` with the contract address (`to`), ABI-encoded function call (`data`), and network. Common selectors:
@@ -92,7 +96,7 @@ Call `eth_call` with the contract address (`to`), ABI-encoded function call (`da
 - `0x313ce567` = `decimals()` (ERC-20)
 
 ### Compare gas prices
-Call `eth_gas_price` on multiple L2 networks (base, arbitrum, optimism, polygon) and compare. Results are in wei (hex).
+Call `eth_gasPrice` on multiple L2 networks (base, arbitrum, optimism, polygon) and compare. Results are in wei (hex).
 
 ### Discover networks
 Call `list_networks` with no arguments to see all available networks with chain IDs and native currencies.

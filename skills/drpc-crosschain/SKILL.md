@@ -14,7 +14,7 @@ Check a wallet's native token balance across all major EVM networks simultaneous
 **Steps:**
 1. Call `list_networks` to get available networks
 2. Filter to EVM networks (ethereum, arbitrum, optimism, base, polygon, bsc, avalanche, etc.)
-3. Call `eth_get_balance` in parallel for each network with the target address
+3. Call `eth_getBalance` in parallel for each network with the target address
 4. Convert each hex result from wei to human-readable format:
    - Divide by 10^18 for ETH-based networks (ethereum, arbitrum, optimism, base)
    - Divide by 10^18 for MATIC (polygon)
@@ -43,7 +43,7 @@ Use `rpc_batch` per network if also checking ERC-20 token balances — batch `et
 Find the cheapest L2 network for transactions right now.
 
 **Steps:**
-1. Call `eth_gas_price` in parallel on: base, arbitrum, optimism, polygon, zksync, linea, scroll, mantle
+1. Call `eth_gasPrice` in parallel on: base, arbitrum, optimism, polygon, zksync, linea, scroll, mantle
 2. Convert each hex result from wei to gwei (divide by 10^9)
 3. Sort ascending by gas price
 4. Present as a table
@@ -69,12 +69,12 @@ L2 Gas Prices (sorted cheapest first):
 Track a cross-chain bridge transfer by polling both source and destination chains.
 
 **Steps:**
-1. Get source chain receipt: call `eth_get_receipt` on source network with the bridge TX hash
+1. Get source chain receipt: call `eth_getTransactionReceipt` on source network with the bridge TX hash
 2. Confirm source TX is successful (`status: "0x1"`)
 3. Determine expected destination TX:
    - Extract bridge event logs from the receipt
    - Identify the destination chain and expected parameters
-4. Poll destination chain: call `eth_get_logs` on destination network, filtering for bridge completion events from the bridge contract
+4. Poll destination chain: call `eth_getLogs` on destination network, filtering for bridge completion events from the bridge contract
 5. Report status of both sides
 
 **Note:** Bridge tracking is protocol-specific. Common bridge contracts:
