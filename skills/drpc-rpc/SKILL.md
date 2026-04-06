@@ -5,97 +5,52 @@ description: Use when the user needs blockchain data (balances, transactions, bl
 
 # DRPC RPC — Blockchain Access for AI Agents
 
-Connect to 100+ blockchains and 200+ networks through DRPC's decentralized RPC gateway via MCP.
+100+ blockchains, 200+ networks via DRPC decentralized RPC gateway.
 
-## Setup
+## Step 1: Detect Transport
 
-Check if DRPC MCP tools are already available (look for tools named `list_networks`, `eth_getBalance`, `rpc_call`). If yes, skip setup entirely.
+Check if DRPC MCP tools are available (look for `list_networks`, `eth_getBalance`, `rpc_call`).
 
-If not configured, ask the user for their DRPC API key. If they don't have one, direct them to https://drpc.org to sign up (free tier available).
+- **MCP tools found** → use them directly. Go to Step 3.
+- **MCP tools NOT found** → go to Step 2.
 
-Once you have the key, configure MCP for the current platform:
+## Step 2: First Session Setup
 
-**Claude Code:**
-```bash
-claude mcp add drpc https://lb.drpc.org/mcp/API_KEY
-```
+Ask user for their DRPC API key. If they don't have one, direct them to https://drpc.org (free tier available).
 
-**Codex:**
-```bash
-codex mcp add drpc --url https://lb.drpc.org/mcp/API_KEY
-```
+Once you have the key:
 
-**Gemini CLI:**
-```bash
-gemini mcp add drpc https://lb.drpc.org/mcp/API_KEY -t http
-```
+1. **Execute the current request now** using direct HTTP calls — no restart needed.
+   See [direct-http.md](direct-http.md) for the curl format.
+2. **Configure MCP for future sessions.**
+   See [setup.md](setup.md) for platform-specific commands.
+3. **Tell the user:** "Done. Next session will use native MCP tools (faster)."
 
-**Cursor:**
-Add to `.cursor/mcp.json`:
-```json
-{ "mcpServers": { "drpc": { "url": "https://lb.drpc.org/mcp/API_KEY" } } }
-```
+## Step 3: Route by Query Type
 
-**Windsurf:**
-Add to `~/.codeium/windsurf/mcp_config.json`:
-```json
-{ "mcpServers": { "drpc": { "serverUrl": "https://lb.drpc.org/mcp/API_KEY" } } }
-```
+| User wants... | Reference |
+|---------------|-----------|
+| Tool parameters, return formats | [tools-reference.md](tools-reference.md) |
+| Single-network query (balance, tx, block, gas, contract) | [recipes-simple.md](recipes-simple.md) |
+| Multi-network comparison, cross-chain tracking | [recipes-crosschain.md](recipes-crosschain.md) |
+| Error handling, billing issue | [errors.md](errors.md) |
+| Setup or reconfigure MCP | [setup.md](setup.md) |
 
-**Cline:**
-Add to MCP settings:
-```json
-{ "mcpServers": { "drpc": { "url": "https://lb.drpc.org/mcp/API_KEY" } } }
-```
+## Error Handling
 
-After setup, restart the session for MCP tools to become available.
+If any call returns an error, check [errors.md](errors.md) before retrying.
 
-## Available Tools
+Key signals:
+- **HTTP 403** → billing/auth error (codes 10, 24, 52, 53, 4, 9)
+- **HTTP 429** → rate limited (code 31) — retry after 1-2s
+- **HTTP 408** → timeout (codes 40, 46)
+- **HTTP 400** → bad request or feature restriction (codes 11, 47, 51)
 
-Once MCP is connected, these tools are available:
+## Quick Reference
 
-| Tool | What it does |
-|------|-------------|
-| `list_networks` | List all 200+ supported blockchain networks |
-| `list_methods` | List RPC methods available for a network |
-| `get_network_info` | Detailed info about a network (chain ID, currency, explorers) |
-| `eth_getBalance` | Get native token balance of an address |
-| `eth_getBlockByNumber` | Get block by number or tag (latest, earliest, etc.) |
-| `eth_getBlockByHash` | Get block by hash |
-| `eth_getTransactionByHash` | Get transaction details by hash |
-| `eth_getTransactionReceipt` | Get transaction receipt (status, gas, logs) |
-| `eth_getLogs` | Query event logs with filters |
-| `eth_call` | Read-only smart contract call |
-| `eth_gasPrice` | Current gas price for a network |
-| `eth_estimateGas` | Estimate gas for a transaction |
-| `eth_getCode` | Get contract bytecode at an address |
-| `eth_getTransactionCount` | Get nonce (transaction count) for an address |
-| `rpc_call` | Any JSON-RPC method on any network (generic fallback) |
-| `rpc_batch` | Multiple RPC calls in a single request |
-
-## Recipes
-
-### Get wallet balance
-Call `eth_getBalance` with the address and network. The result is in wei (hex). Convert: divide by 10^18 for ETH/MATIC, 10^8 for BTC.
-
-### Check transaction status
-Call `eth_getTransactionReceipt` with the tx hash. Check the `status` field: `"0x1"` = success, `"0x0"` = reverted.
-
-### Read a smart contract
-Call `eth_call` with the contract address (`to`), ABI-encoded function call (`data`), and network. Common selectors:
-- `0x70a08231` + padded address = `balanceOf(address)` (ERC-20)
-- `0x95d89b41` = `symbol()` (ERC-20)
-- `0x313ce567` = `decimals()` (ERC-20)
-
-### Compare gas prices
-Call `eth_gasPrice` on multiple L2 networks (base, arbitrum, optimism, polygon) and compare. Results are in wei (hex).
-
-### Discover networks
-Call `list_networks` with no arguments to see all available networks with chain IDs and native currencies.
-
-## Tips
-- Always use `list_networks` first if you're unsure which networks are available
-- Use `rpc_batch` to combine multiple independent queries into one request
-- For event logs, keep block ranges narrow (max 1000 blocks) to avoid timeouts
-- Block tags: `"latest"`, `"earliest"`, `"pending"`, `"safe"`, `"finalized"` or hex block number
-- All addresses must be 0x-prefixed, 42-character hex strings
+- Addresses: 0x-prefixed, 42-char hex
+- Block tags: `"latest"`, `"earliest"`, `"safe"`, `"finalized"`, or hex number
+- Values: hex strings in wei. ETH = wei / 10^18, gwei = wei / 10^9
+- Use `list_networks` first if unsure about network names
+- Use `rpc_batch` for multiple queries on the same network
+- Use `rpc_call` for non-EVM chains (Solana, Bitcoin, NEAR, Cosmos)

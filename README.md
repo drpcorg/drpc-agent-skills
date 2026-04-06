@@ -1,12 +1,12 @@
 # DRPC Agent Skills
 
-Blockchain RPC skills for AI coding agents. 100+ blockchains, 200+ networks, guided recipes, cross-chain workflows.
+Blockchain RPC skills for AI coding agents. 100+ blockchains, 200+ networks, guided recipes, error handling, zero-restart first session.
 
 **Why DRPC?** Decentralized multi-provider gateway with automatic failover and consensus validation. No single point of failure.
 
 ## Install
 
-Get your free API key at [drpc.org](https://drpc.org), then install skills for your platform:
+Get your free API key at [drpc.org](https://drpc.org), then install the skill for your platform:
 
 ### Claude Code
 ```bash
@@ -23,61 +23,33 @@ gemini extensions install https://github.com/drpcorg/drpc-agent-skills
 ```bash
 git clone https://github.com/drpcorg/drpc-agent-skills.git
 ln -s $(pwd)/drpc-agent-skills/skills/drpc-rpc ~/.agents/skills/drpc-rpc
-ln -s $(pwd)/drpc-agent-skills/skills/drpc-crosschain ~/.agents/skills/drpc-crosschain
 ```
 
 ### Cursor
 ```bash
 git clone https://github.com/drpcorg/drpc-agent-skills.git
 ln -s $(pwd)/drpc-agent-skills/skills/drpc-rpc .cursor/skills/drpc-rpc
-ln -s $(pwd)/drpc-agent-skills/skills/drpc-crosschain .cursor/skills/drpc-crosschain
 ```
 
 ### Windsurf
 ```bash
 git clone https://github.com/drpcorg/drpc-agent-skills.git
 ln -s $(pwd)/drpc-agent-skills/skills/drpc-rpc .windsurf/skills/drpc-rpc
-ln -s $(pwd)/drpc-agent-skills/skills/drpc-crosschain .windsurf/skills/drpc-crosschain
 ```
 
 ### Cline
 ```bash
 git clone https://github.com/drpcorg/drpc-agent-skills.git
 ln -s $(pwd)/drpc-agent-skills/skills/drpc-rpc .cline/skills/drpc-rpc
-ln -s $(pwd)/drpc-agent-skills/skills/drpc-crosschain .cline/skills/drpc-crosschain
 ```
 
 ### OpenClaw
 ```bash
 git clone https://github.com/drpcorg/drpc-agent-skills.git
 ln -s $(pwd)/drpc-agent-skills/skills/drpc-rpc ~/.openclaw/skills/drpc-rpc
-ln -s $(pwd)/drpc-agent-skills/skills/drpc-crosschain ~/.openclaw/skills/drpc-crosschain
 ```
 
-## MCP Server (Optional)
-
-Skills include setup recipes that guide the agent through MCP configuration. To add the MCP server directly:
-
-```bash
-# Claude Code
-claude mcp add drpc https://lb.drpc.org/mcp/YOUR_KEY
-
-# Codex
-codex mcp add drpc --url https://lb.drpc.org/mcp/YOUR_KEY
-
-# Gemini CLI
-gemini mcp add drpc https://lb.drpc.org/mcp/YOUR_KEY -t http
-
-# OpenClaw
-openclaw mcp set drpc '{"url":"https://lb.drpc.org/mcp/YOUR_KEY"}'
-```
-
-For Cursor, Windsurf, and Cline — add to your MCP config file:
-```json
-{ "mcpServers": { "drpc": { "url": "https://lb.drpc.org/mcp/YOUR_KEY" } } }
-```
-
-## What Can You Do?
+## How It Works
 
 Once installed, just ask your AI agent:
 
@@ -87,35 +59,43 @@ Once installed, just ask your AI agent:
 
 > "Check if transaction 0xabc... is confirmed on Arbitrum"
 
-> "What networks does DRPC support?"
-
 > "Read the totalSupply of USDC contract on Base"
 
-## Skills Included
+The skill guides the agent through:
+1. **First session:** asks for API key, executes request via direct HTTP (no restart needed), configures MCP for future sessions
+2. **Subsequent sessions:** uses native MCP tools (faster, integrated)
+3. **Error handling:** recognizes billing limits, rate limiting, and guides recovery
 
-| Skill | Description |
-|-------|-------------|
-| `drpc-rpc` | Core blockchain RPC access — setup, 16 tools, recipes for balances, transactions, contracts, gas |
-| `drpc-crosschain` | Multi-network recipes — cross-chain balances, L2 gas comparison, bridge tracking |
+## Skill Contents
 
-## Available MCP Tools
+| File | Purpose |
+|------|---------|
+| [SKILL.md](skills/drpc-rpc/SKILL.md) | Entry point — detects transport, routes by query type |
+| [setup.md](skills/drpc-rpc/setup.md) | MCP configuration per platform |
+| [direct-http.md](skills/drpc-rpc/direct-http.md) | Direct HTTP calls for first session (no MCP needed) |
+| [tools-reference.md](skills/drpc-rpc/tools-reference.md) | All 16 MCP tools with parameters |
+| [recipes-simple.md](skills/drpc-rpc/recipes-simple.md) | Single-network recipes |
+| [recipes-crosschain.md](skills/drpc-rpc/recipes-crosschain.md) | Cross-chain recipes |
+| [errors.md](skills/drpc-rpc/errors.md) | Error codes, billing errors, recovery patterns |
+
+## MCP Tools
 
 | Tool | Description |
 |------|-------------|
 | `list_networks` | All 200+ supported networks |
-| `list_methods` | RPC methods available for a network |
+| `list_methods` | RPC methods for a network |
 | `get_network_info` | Network details (chain ID, currency, explorers) |
 | `eth_getBalance` | Native token balance |
-| `eth_getBlockByNumber` | Block data by number or tag |
-| `eth_getBlockByHash` | Block data by hash |
+| `eth_getBlockByNumber` | Block by number or tag |
+| `eth_getBlockByHash` | Block by hash |
 | `eth_getTransactionByHash` | Transaction details |
 | `eth_getTransactionReceipt` | Receipt with status and logs |
 | `eth_getLogs` | Event log queries |
 | `eth_call` | Read smart contracts |
 | `eth_gasPrice` | Current gas price |
-| `eth_estimateGas` | Estimate gas for a transaction |
-| `eth_getCode` | Contract bytecode at address |
-| `eth_getTransactionCount` | Nonce for an address |
+| `eth_estimateGas` | Gas estimation |
+| `eth_getCode` | Contract bytecode |
+| `eth_getTransactionCount` | Nonce for address |
 | `rpc_call` | Any JSON-RPC method |
 | `rpc_batch` | Batch multiple calls |
 
