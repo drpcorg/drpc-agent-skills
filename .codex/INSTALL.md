@@ -8,7 +8,9 @@ ln -s $(pwd)/drpc-agent-skills/skills/drpc-rpc ~/.agents/skills/drpc-rpc
 ln -s $(pwd)/drpc-agent-skills/skills/drpc-crosschain ~/.agents/skills/drpc-crosschain
 ```
 
-## Add MCP server
+Skills are detected automatically from `~/.agents/skills/`. Restart Codex if they don't appear.
+
+## Add MCP server (optional)
 
 ```bash
 codex mcp add drpc --url https://lb.drpc.org/mcp/YOUR_API_KEY

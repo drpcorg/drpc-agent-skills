@@ -1,0 +1,15 @@
+{
+  "name": "drpc-agent-skills",
+  "displayName": "DRPC Agent Skills",
+  "version": "0.1.0",
+  "description": "Blockchain RPC access for AI agents — 200+ networks via DRPC MCP gateway",
+  "author": {
+    "name": "DRPC",
+    "email": "anton@drpc.org"
+  },
+  "homepage": "https://github.com/drpcorg/drpc-agent-skills",
+  "repository": "https://github.com/drpcorg/drpc-agent-skills",
+  "license": "MIT",
+  "skills": "./skills/",
+  "category": "development"
+}
