@@ -1,0 +1,20 @@
+{
+  "name": "drpc-marketplace",
+  "description": "DRPC blockchain RPC skills for AI coding agents",
+  "owner": {
+    "name": "DRPC",
+    "email": "anton@drpc.org"
+  },
+  "plugins": [
+    {
+      "name": "drpc-agent-skills",
+      "description": "Blockchain RPC access for AI agents — 200+ networks via DRPC MCP gateway",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/drpcorg/drpc-agent-skills.git"
+      },
+      "homepage": "https://github.com/drpcorg/drpc-agent-skills",
+      "category": "development"
+    }
+  ]
+}
