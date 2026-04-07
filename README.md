@@ -7,13 +7,13 @@
 [![Platforms](https://img.shields.io/badge/platforms-7-green)](#install)
 [![MCP Tools](https://img.shields.io/badge/MCP_tools-16-orange)](#mcp-tools)
 
-Blockchain RPC skills for AI coding agents. 100+ blockchains, 200+ networks, guided recipes, error handling, zero-restart first session.
+Give your AI coding agent access to 100+ blockchains over RPC. Works on first ask -- no restart, no config file editing. Guided recipes, error handling, 200+ networks.
 
-**Why DRPC?** Decentralized multi-provider gateway with automatic failover and consensus validation. No single point of failure.
+**Why DRPC?** Your requests go through a decentralized gateway that routes across multiple providers. If one is down, another picks up. Responses are consensus-validated, so you don't get bad data from a single node.
 
 ## What Can You Do?
 
-Just ask your AI agent in natural language:
+Type a plain English prompt. The agent figures out which RPC calls to make.
 
 | Use Case | Example Prompt |
 |----------|---------------|
@@ -73,22 +73,19 @@ ln -s $(pwd)/drpc-agent-skills/skills/drpc-rpc ~/.openclaw/skills/drpc-rpc
 
 ## How It Works
 
-Once installed, just ask your AI agent:
+Ask something like:
 
 > "Get the ETH balance of vitalik.eth on Ethereum"
 
 > "Compare gas prices across all L2 networks"
 
-> "Check if transaction 0xabc... is confirmed on Arbitrum"
-
-> "Read the totalSupply of USDC contract on Base"
+The agent reads the skill file, picks the right RPC method, calls DRPC, and gives you back the result. No boilerplate on your end.
 
 ```text
 You ask → Agent reads skill → Calls DRPC API → Returns blockchain data
-         (natural language)    (auto-configured)   (100+ chains)
 ```
 
-The skill guides the agent through:
+Three modes, picked automatically:
 1. **First session:** asks for API key, executes request via direct HTTP (no restart needed), configures MCP for future sessions
 2. **Subsequent sessions:** uses native MCP tools (faster, integrated)
 3. **Error handling:** recognizes billing limits, rate limiting, and guides recovery
@@ -132,9 +129,9 @@ Ethereum, Arbitrum, Optimism, Base, Polygon, BNB Chain, Avalanche, zkSync, Linea
 
 ## Contributing
 
-Contributions welcome! Please open an issue or submit a PR.
+Found a bug? Missing a chain? Open an issue or send a PR.
 
-If you find this useful, please star the repo -- it helps others discover it.
+Stars help with discoverability -- if this saved you time, consider leaving one.
 
 ## License
 
