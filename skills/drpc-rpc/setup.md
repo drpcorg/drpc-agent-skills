@@ -12,7 +12,7 @@ After obtaining the key, run the command for your platform:
 
 **Claude Code:**
 ```bash
-claude mcp add drpc https://lb.drpc.org/mcp/API_KEY
+claude mcp add --transport http drpc https://lb.drpc.org/mcp/API_KEY
 ```
 
 **Codex:**
