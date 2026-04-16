@@ -7,7 +7,7 @@
 [![Platforms](https://img.shields.io/badge/platforms-7-green)](#install)
 [![MCP Tools](https://img.shields.io/badge/MCP_tools-16-orange)](#mcp-tools)
 
-Give your AI coding agent access to 100+ blockchains over RPC. Works on first ask -- no restart, no config file editing. Guided recipes, error handling, 200+ networks.
+Give your AI coding agent access to 100+ blockchains over RPC. Works on first ask -- no restart, no config file editing. Agents with a wallet get an API key automatically via x402 -- no signup needed. Guided recipes, error handling, 200+ networks.
 
 **Why DRPC?** Your requests go through a decentralized gateway that routes across multiple providers. If one is down, another picks up. Responses are consensus-validated, so you don't get bad data from a single node.
 
@@ -28,7 +28,7 @@ Type a plain English prompt. The agent figures out which RPC calls to make.
 
 **Works with:** Claude Code · Gemini CLI · Cursor · Codex · Windsurf · Cline · OpenClaw
 
-Get your free API key at [drpc.org](https://drpc.org), then install the skill for your platform:
+If your agent has a wallet, it gets an API key automatically via [x402](skills/drpc-rpc/x402-auto-key.md) -- no signup. Otherwise, get a free key at [drpc.org](https://drpc.org). Then install the skill for your platform:
 
 ### Claude Code
 ```bash
@@ -86,7 +86,7 @@ You ask → Agent reads skill → Calls DRPC API → Returns blockchain data
 ```
 
 Three modes, picked automatically:
-1. **First session:** asks for API key, executes request via direct HTTP (no restart needed), configures MCP for future sessions
+1. **First session:** acquires API key via x402 wallet signing (or asks you for one), executes request via direct HTTP (no restart needed), configures MCP for future sessions
 2. **Subsequent sessions:** uses native MCP tools (faster, integrated)
 3. **Error handling:** recognizes billing limits, rate limiting, and guides recovery
 
@@ -100,6 +100,7 @@ Three modes, picked automatically:
 | [tools-reference.md](skills/drpc-rpc/tools-reference.md) | All 16 MCP tools with parameters |
 | [recipes-simple.md](skills/drpc-rpc/recipes-simple.md) | Single-network recipes |
 | [recipes-crosschain.md](skills/drpc-rpc/recipes-crosschain.md) | Cross-chain recipes |
+| [x402-auto-key.md](skills/drpc-rpc/x402-auto-key.md) | Auto-acquire API key via x402 (SIWE + EIP-3009) |
 | [errors.md](skills/drpc-rpc/errors.md) | Error codes, billing errors, recovery patterns |
 
 ## MCP Tools
