@@ -90,6 +90,34 @@ Three modes, picked automatically:
 2. **Subsequent sessions:** uses native MCP tools (faster, integrated)
 3. **Error handling:** recognizes billing limits, rate limiting, and guides recovery
 
+## x402: Automatic API Key Acquisition
+
+This skill implements the [x402 payment protocol](https://github.com/coinbase/x402) -- an open standard by Coinbase for machine-to-machine payments over HTTP. When a server returns `402 Payment Required`, the client knows exactly what to pay, signs the payment, and gets access. No accounts, no dashboards, no copy-pasting keys.
+
+Our implementation adds a free shortcut on top of the standard flow:
+
+```text
+Agent has wallet?
+  │
+  ├─ yes → SIWE sign-in (EIP-4361) ─── wallet already linked? ─── yes → API key (free, instant)
+  │                                                                 │
+  │                                                                 no
+  │                                                                 ↓
+  │                                       Pay 5 USDC (EIP-3009 signature, settled on Base)
+  │                                                                 ↓
+  │                                                          API key + tx receipt
+  │
+  └─ no  → Ask user for key (fallback to drpc.org free tier)
+```
+
+1. **SIWE check first** -- the agent signs a message proving wallet ownership. If that wallet is already tied to a DRPC account, the API key comes back immediately at no cost.
+2. **Payment only when needed** -- for new wallets, the agent signs an EIP-3009 `transferWithAuthorization` for USDC on Base. The server settles it on-chain and returns the key.
+3. **Graceful fallback** -- no wallet? The agent asks the user for a key the old-fashioned way.
+
+All signatures are off-chain (no gas for the user). Settlement happens server-side.
+
+See [x402-auto-key.md](skills/drpc-rpc/x402-auto-key.md) for the full protocol recipe with curl examples.
+
 ## Skill Contents
 
 | File | Purpose |
