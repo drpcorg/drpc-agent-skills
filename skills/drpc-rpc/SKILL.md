@@ -11,14 +11,27 @@ description: Use when the user needs blockchain data (balances, transactions, bl
 
 Check if DRPC MCP tools are available (look for `list_networks`, `eth_getBalance`, `rpc_call`).
 
-- **MCP tools found** → use them directly. Go to Step 3.
+- **MCP tools found** → use them directly. Go to Step 5.
 - **MCP tools NOT found** → go to Step 2.
 
-## Step 2: First Session Setup
+## Step 2: Auto-Acquire API Key via x402
+
+If you have access to an EVM wallet (private key or signer), try to get an API key automatically using the x402 protocol. See [x402-auto-key.md](x402-auto-key.md) for the full flow.
+
+Summary:
+1. Sign in with wallet (SIWE) — if wallet is known, get key for free.
+2. If wallet is new, pay with USDC (EIP-3009) — get key after on-chain settlement.
+
+- **Got `api_key`** → go to Step 4.
+- **No wallet or any failure** → go to Step 3.
+
+## Step 3: Fallback — Ask User for API Key
 
 Ask user for their DRPC API key. If they don't have one, direct them to https://drpc.org (free tier available).
 
-Once you have the key:
+## Step 4: Configure MCP + Execute Current Request
+
+Once you have an API key (from Step 2 or Step 3):
 
 1. **Execute the current request now** using direct HTTP calls — no restart needed.
    See [direct-http.md](direct-http.md) for the curl format.
@@ -26,7 +39,7 @@ Once you have the key:
    See [setup.md](setup.md) for platform-specific commands.
 3. **Tell the user:** "Done. Next session will use native MCP tools (faster)."
 
-## Step 3: Route by Query Type
+## Step 5: Route by Query Type
 
 | User wants... | Reference |
 |---------------|-----------|
@@ -35,6 +48,7 @@ Once you have the key:
 | Multi-network comparison, cross-chain tracking | [recipes-crosschain.md](recipes-crosschain.md) |
 | DeFi: portfolio, approvals, LP tokens, staking | [recipes-defi-basics.md](recipes-defi-basics.md) |
 | DeFi: Aave, Uniswap, Lido, Morpho, Curve | [recipes-defi-protocols.md](recipes-defi-protocols.md) |
+| x402 auto-key flow | [x402-auto-key.md](x402-auto-key.md) |
 | Error handling, billing issue | [errors.md](errors.md) |
 | Setup or reconfigure MCP | [setup.md](setup.md) |
 

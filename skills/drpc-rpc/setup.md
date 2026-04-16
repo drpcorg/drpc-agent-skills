@@ -51,8 +51,6 @@ Restart the session for MCP tools to become available.
 
 In the **current session**, use direct HTTP calls to execute requests without restarting — see [direct-http.md](direct-http.md).
 
-## x402 Auto-Payment (Coming Soon)
+## x402 Auto-Payment
 
-Future: the agent will be able to auto-register and pay for access via the x402 protocol (HTTP 402 Payment Required). No manual API key will be needed.
-
-This feature is not yet available. Do not attempt to use x402.
+If the agent has wallet access, it can acquire an API key automatically via the x402 protocol — no manual registration needed. See [x402-auto-key.md](x402-auto-key.md).
