@@ -1,0 +1,27 @@
+{
+  "name": "drpc-agent-skills",
+  "version": "0.1.0",
+  "description": "Blockchain RPC access for AI agents — 200+ networks via DRPC MCP gateway",
+  "license": "MIT",
+  "keywords": [
+    "pi-package",
+    "agent-skills",
+    "drpc",
+    "blockchain",
+    "rpc",
+    "mcp"
+  ],
+  "pi": {
+    "skills": [
+      "skills",
+      ".pi/skills"
+    ],
+    "extensions": [
+      "extensions/drpc-setup.ts"
+    ]
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "typebox": "*"
+  }
+}

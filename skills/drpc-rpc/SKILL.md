@@ -49,6 +49,7 @@ Once you have an API key (from Step 2 or Step 3):
 | DeFi: portfolio, approvals, LP tokens, staking | [recipes-defi-basics.md](recipes-defi-basics.md) |
 | DeFi: Aave, Uniswap, Lido, Morpho, Curve | [recipes-defi-protocols.md](recipes-defi-protocols.md) |
 | x402 auto-key flow | [x402-auto-key.md](x402-auto-key.md) |
+| Client-specific routing/repro (`reth`, `geth`, `erigon`, etc.) | [client-selection.md](client-selection.md) |
 | Error handling, billing issue | [errors.md](errors.md) |
 | Setup or reconfigure MCP | [setup.md](setup.md) |
 
@@ -68,5 +69,6 @@ Key signals:
 - Block tags: `"latest"`, `"earliest"`, `"safe"`, `"finalized"`, or hex number
 - Values: hex strings in wei. ETH = wei / 10^18, gwei = wei / 10^9
 - Use `list_networks` first if unsure about network names
+- MCP tools usually do not expose routing hints; use [client-selection.md](client-selection.md) for direct JSON-RPC calls with `clients=reth`, `client_type=geth`, etc.
 - Use `rpc_batch` for multiple queries on the same network
 - Use `rpc_call` for non-EVM chains (Solana, Bitcoin, NEAR, Cosmos)

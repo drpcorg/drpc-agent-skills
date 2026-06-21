@@ -25,6 +25,15 @@ codex mcp add drpc --url https://lb.drpc.org/mcp/API_KEY
 gemini mcp add drpc https://lb.drpc.org/mcp/API_KEY -t http
 ```
 
+**Pi Agent:**
+
+Pi-specific setup lives separately under `.pi/` and is installed through the Pi extension packaged by this repository. See [.pi/INSTALL.md](../../.pi/INSTALL.md).
+
+```bash
+pi install npm:pi-mcp-adapter
+pi install https://github.com/drpcorg/drpc-agent-skills
+```
+
 **Cursor** — add to `.cursor/mcp.json`:
 ```json
 { "mcpServers": { "drpc": { "url": "https://lb.drpc.org/mcp/API_KEY" } } }
