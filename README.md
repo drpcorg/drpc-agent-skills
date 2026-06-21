@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Blockchains](https://img.shields.io/badge/blockchains-100%2B-blue)](https://drpc.org/chainlist)
 [![Networks](https://img.shields.io/badge/networks-200%2B-purple)](https://drpc.org/chainlist)
-[![Platforms](https://img.shields.io/badge/platforms-7-green)](#install)
+[![Platforms](https://img.shields.io/badge/platforms-8-green)](#install)
 [![MCP Tools](https://img.shields.io/badge/MCP_tools-16-orange)](#mcp-tools)
 
 Give your AI coding agent access to 100+ blockchains over RPC. Works on first ask -- no restart, no config file editing. Agents with a wallet get an API key automatically via x402 -- no signup needed. Guided recipes, error handling, 200+ networks.
@@ -26,7 +26,7 @@ Type a plain English prompt. The agent figures out which RPC calls to make.
 
 ## Install
 
-**Works with:** Claude Code · Gemini CLI · Cursor · Codex · Windsurf · Cline · OpenClaw
+**Works with:** Claude Code · Gemini CLI · Cursor · Codex · Pi Agent · Windsurf · Cline · OpenClaw
 
 If your agent has a wallet, it gets an API key automatically via [x402](skills/drpc-rpc/x402-auto-key.md) -- no signup. Otherwise, get a free key at [drpc.org](https://drpc.org). Then install the skill for your platform:
 
@@ -46,6 +46,15 @@ gemini extensions install https://github.com/drpcorg/drpc-agent-skills
 git clone https://github.com/drpcorg/drpc-agent-skills.git
 ln -s $(pwd)/drpc-agent-skills/skills/drpc-rpc ~/.agents/skills/drpc-rpc
 ```
+
+### Pi Agent
+
+```bash
+pi install npm:pi-mcp-adapter
+pi install https://github.com/drpcorg/drpc-agent-skills
+```
+
+Pi-specific setup is bundled as a Pi extension and documented separately in [.pi/INSTALL.md](.pi/INSTALL.md).
 
 ### Cursor
 ```bash
