@@ -2,6 +2,8 @@
 
 All EVM tools use standard Ethereum JSON-RPC names and accept `{ network, params }`.
 
+Need to force a client implementation such as `reth`, `geth`, or `erigon`? MCP tools usually do not expose routing selectors; use the direct JSON-RPC endpoint in [client-selection.md](client-selection.md) for that specific call.
+
 ## Discovery Tools
 
 ### list_networks

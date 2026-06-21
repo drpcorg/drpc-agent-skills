@@ -125,6 +125,7 @@ See [x402-auto-key.md](skills/drpc-rpc/x402-auto-key.md) for the full protocol r
 | [SKILL.md](skills/drpc-rpc/SKILL.md) | Entry point — detects transport, routes by query type |
 | [setup.md](skills/drpc-rpc/setup.md) | MCP configuration per platform |
 | [direct-http.md](skills/drpc-rpc/direct-http.md) | Direct HTTP calls for first session (no MCP needed) |
+| [client-selection.md](skills/drpc-rpc/client-selection.md) | Direct JSON-RPC client selection (`reth`, `geth`, `erigon`, etc.) |
 | [tools-reference.md](skills/drpc-rpc/tools-reference.md) | All 16 MCP tools with parameters |
 | [recipes-simple.md](skills/drpc-rpc/recipes-simple.md) | Single-network recipes |
 | [recipes-crosschain.md](skills/drpc-rpc/recipes-crosschain.md) | Cross-chain recipes |

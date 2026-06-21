@@ -2,6 +2,8 @@
 
 When MCP tools are not yet configured, call DRPC tools directly via HTTP POST.
 
+For client-specific routing hints (`clients=reth`, `client_type=geth`, version filters), use the direct JSON-RPC endpoint documented in [client-selection.md](client-selection.md). The MCP-over-HTTP endpoint below mirrors MCP tools and usually does not expose routing selectors.
+
 ## Endpoint
 
 ```
