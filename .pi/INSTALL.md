@@ -10,6 +10,7 @@ pi install https://github.com/drpcorg/drpc-agent-skills
 The Pi package loads:
 
 - generic DRPC skill: `skills/drpc-rpc/`
+- account usage skill: `skills/drpc-usage/`
 - Pi-only setup overlay skill: `.pi/skills/drpc-rpc-pi/`
 - Pi extension: `extensions/drpc-setup.ts`
 
@@ -60,6 +61,7 @@ Manual DRPC API-key setup is still available:
 git clone https://github.com/drpcorg/drpc-agent-skills.git
 mkdir -p ~/.pi/agent/skills
 ln -s $(pwd)/drpc-agent-skills/skills/drpc-rpc ~/.pi/agent/skills/drpc-rpc
+ln -s $(pwd)/drpc-agent-skills/skills/drpc-usage ~/.pi/agent/skills/drpc-usage
 ```
 
 Pi also discovers Agent Skills from `~/.agents/skills/`, so a Codex-style install works too.

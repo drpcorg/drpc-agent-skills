@@ -7,3 +7,5 @@
 @./skills/drpc-rpc/recipes-defi-basics.md
 @./skills/drpc-rpc/recipes-defi-protocols.md
 @./skills/drpc-rpc/errors.md
+@./skills/drpc-usage/SKILL.md
+@./skills/drpc-usage/api-reference.md

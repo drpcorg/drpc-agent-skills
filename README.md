@@ -23,6 +23,7 @@ Type a plain English prompt. The agent figures out which RPC calls to make.
 | **Smart Contract Reading** | "Read the totalSupply of USDC contract on Base" |
 | **Whale Watching** | "Get the last 10 transactions for this address on Ethereum" |
 | **Cross-Chain Analysis** | "Compare TVL-related contract data across Arbitrum, Base and Optimism" |
+| **Account Balance & Usage** | "Check my DRPC CU balance, 24h consumption, and top CU-consuming methods" |
 
 ## Install
 
@@ -45,6 +46,7 @@ gemini extensions install https://github.com/drpcorg/drpc-agent-skills
 ```bash
 git clone https://github.com/drpcorg/drpc-agent-skills.git
 ln -s $(pwd)/drpc-agent-skills/skills/drpc-rpc ~/.agents/skills/drpc-rpc
+ln -s $(pwd)/drpc-agent-skills/skills/drpc-usage ~/.agents/skills/drpc-usage
 ```
 
 ### Pi Agent
@@ -60,24 +62,28 @@ Pi-specific setup is bundled as a Pi extension and documented separately in [.pi
 ```bash
 git clone https://github.com/drpcorg/drpc-agent-skills.git
 ln -s $(pwd)/drpc-agent-skills/skills/drpc-rpc .cursor/skills/drpc-rpc
+ln -s $(pwd)/drpc-agent-skills/skills/drpc-usage .cursor/skills/drpc-usage
 ```
 
 ### Windsurf
 ```bash
 git clone https://github.com/drpcorg/drpc-agent-skills.git
 ln -s $(pwd)/drpc-agent-skills/skills/drpc-rpc .windsurf/skills/drpc-rpc
+ln -s $(pwd)/drpc-agent-skills/skills/drpc-usage .windsurf/skills/drpc-usage
 ```
 
 ### Cline
 ```bash
 git clone https://github.com/drpcorg/drpc-agent-skills.git
 ln -s $(pwd)/drpc-agent-skills/skills/drpc-rpc .cline/skills/drpc-rpc
+ln -s $(pwd)/drpc-agent-skills/skills/drpc-usage .cline/skills/drpc-usage
 ```
 
 ### OpenClaw
 ```bash
 git clone https://github.com/drpcorg/drpc-agent-skills.git
 ln -s $(pwd)/drpc-agent-skills/skills/drpc-rpc ~/.openclaw/skills/drpc-rpc
+ln -s $(pwd)/drpc-agent-skills/skills/drpc-usage ~/.openclaw/skills/drpc-usage
 ```
 
 ## How It Works
@@ -129,6 +135,8 @@ See [x402-auto-key.md](skills/drpc-rpc/x402-auto-key.md) for the full protocol r
 
 ## Skill Contents
 
+### `drpc-rpc` (Blockchain RPC Access)
+
 | File | Purpose |
 |------|---------|
 | [SKILL.md](skills/drpc-rpc/SKILL.md) | Entry point — detects transport, routes by query type |
@@ -140,6 +148,13 @@ See [x402-auto-key.md](skills/drpc-rpc/x402-auto-key.md) for the full protocol r
 | [recipes-crosschain.md](skills/drpc-rpc/recipes-crosschain.md) | Cross-chain recipes |
 | [x402-auto-key.md](skills/drpc-rpc/x402-auto-key.md) | Auto-acquire API key via x402 (SIWE + EIP-3009) |
 | [errors.md](skills/drpc-rpc/errors.md) | Error codes, billing errors, recovery patterns |
+
+### `drpc-usage` (Account Balance & CU Metrics)
+
+| File | Purpose |
+|------|---------|
+| [SKILL.md](skills/drpc-usage/SKILL.md) | Entry point — Statistics API auth, CU & plan caveats, usage routing |
+| [api-reference.md](skills/drpc-usage/api-reference.md) | Statistics API (JSON/Prometheus) schemas + `curl`/`jq` aggregation recipes |
 
 ## MCP Tools
 

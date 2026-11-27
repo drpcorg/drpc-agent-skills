@@ -5,6 +5,7 @@
 ```bash
 git clone https://github.com/drpcorg/drpc-agent-skills.git
 ln -s $(pwd)/drpc-agent-skills/skills/drpc-rpc ~/.agents/skills/drpc-rpc
+ln -s $(pwd)/drpc-agent-skills/skills/drpc-usage ~/.agents/skills/drpc-usage
 ln -s $(pwd)/drpc-agent-skills/skills/drpc-crosschain ~/.agents/skills/drpc-crosschain
 ```
 

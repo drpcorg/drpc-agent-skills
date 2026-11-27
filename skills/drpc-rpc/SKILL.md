@@ -1,6 +1,6 @@
 ---
 name: drpc-rpc
-description: Use when the user needs blockchain data (balances, transactions, blocks, gas prices, contract reads), wants to set up blockchain RPC access, or mentions DRPC, Web3, or Ethereum RPC. Also triggers on specific method names like eth_getBalance, eth_call, eth_getLogs.
+description: Use when the user needs on-chain blockchain data (wallet balances, transactions, blocks, gas prices, contract reads), wants to set up blockchain RPC access, or mentions DRPC, Web3, or Ethereum RPC. Also triggers on specific method names like eth_getBalance, eth_call, eth_getLogs. Do NOT use for DRPC account balance, CU usage, or billing metrics — use drpc-usage instead.
 ---
 
 # DRPC RPC — Blockchain Access for AI Agents
